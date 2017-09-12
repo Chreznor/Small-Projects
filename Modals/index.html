@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Modal</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<button id="modalBtn" class="button">Click Me</button>
+
+	<div id="modal__background" class="modal">
+		<div id="modal__content">
+			<div class="modal__header">
+				<span id="closeBtn">&times;</span>
+				<h2>Modal Header</h2>
+			</div>
+			<div class="modal__body">
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim, id. Eum quia ex dolore quas delectus necessitatibus neque, inventore tenetur ab placeat sint velit aliquam est illo voluptatem provident veritatis, quibusdam maxime amet, libero aperiam quos nostrum. Nesciunt voluptates amet, harum deserunt unde aliquam, dignissimos nulla nam libero laboriosam iusto.</p>
+			</div>
+			<div class="modal__footer">
+				<h3>Modal Footer</h3>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		const modalBtn = document.getElementById('modalBtn');
+		const modalBack = document.getElementById('modal__background');
+		const closeBtn = document.getElementById('closeBtn');
+
+		modalBtn.addEventListener('click', activateModal);
+		closeBtn.addEventListener('click', closeModal);
+		window.addEventListener('click', outsideClick);
+
+
+		function activateModal() {
+			modalBack.style.display = 'block';
+		};
+
+		function closeModal() {
+			modalBack.style.display = 'none';
+		};
+
+		function outsideClick(e) {
+			if(e.target === modalBack) {
+				modalBack.style.display = 'none';
+			}
+		};
+
+
+	</script>
+</body>
+</html>

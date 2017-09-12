@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Dropdown test</title>
+	<style>
+		body {
+			box-sizing: border-box;
+			margin: 0;
+			font-size: 18px;
+		}
+		nav {
+			width: 960px;
+			margin: 0 auto;
+			background-color: coral;
+			height: 50px;
+			padding: 10px 20px;
+		}
+
+		ul {
+			margin: 20px 0;
+		}
+
+		.nav__li {
+			display: inline-block;
+		}
+
+		.nav__li > a {
+			text-decoration: none;
+			text-transform: uppercase;
+			padding: 0 15px;
+			color: white;
+		}
+
+		.nav__li > a::after {
+		    content: '';
+		    display: block;
+		    width: 0;
+		    height: 2px;
+		    background-color: white;
+		    transition: width .7s;
+		}
+		
+		.nav__li > a:hover::after {
+		    width: 100%;
+		}
+		
+		#dropdown__origin {
+			position: relative;
+		}
+
+		.dropdown {
+			visibility: hidden;
+			width: 0;
+			top: 25px;
+			position: absolute;
+			border: 1px solid black;
+			box-shadow: 1px 1px 0 black;
+			background-color: white;
+			transition: width .7s;
+			overflow: hidden;
+		}
+
+		.dropdown ul {
+			position: relative;
+			padding: 0;
+			margin: 0;
+		}
+
+		#dropdown__origin:hover > .dropdown {
+			visibility: visible;
+			width: 180px;
+		}
+
+		.dropdown__text { 
+			border-bottom: 1px solid black;
+			width: 100%;
+		}
+
+		.dropdown__text:hover {
+			background-color: rgba(138, 135, 133, 0.9);
+			color: white;
+		}
+
+		.dropdown__text a {
+			display: block;
+			width: 100%;
+			height: 100%;
+			color: black;
+			text-decoration: none;
+			text-transform: uppercase;
+			padding: 10px 15px;
+		}
+
+
+	</style>
+</head>
+<body>
+	<nav>
+		<ul>
+			<li class="nav__li">
+				<a href="1">First</a>
+			</li>
+			<li class="nav__li">
+				<a href="1">Second</a>
+			</li>
+			<li class="nav__li">
+				<a href="1">Third</a>
+			</li>
+			<li class="nav__li" id="dropdown__origin">
+				<a href="1">Fourth</a>
+				<div class="dropdown">
+					<ul>
+						<li class="dropdown__text"><a  href="">Link</a></li>
+						<li class="dropdown__text"><a href="">Link</a></li>
+						<li class="dropdown__text"><a href="">Link</a></li>
+					</ul>
+				</div>
+			</li>
+			<li class="nav__li">
+				<a href="1">Fifth</a>
+			</li>
+			<li class="nav__li">
+				<a href="1">Sixth</a>
+			</li>
+		</ul>
+	</nav>
+</body>
+</html>
