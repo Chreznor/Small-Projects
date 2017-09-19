@@ -1,9 +1,9 @@
-$(document).ready(() => {
-	$('#searchForm').on('submit', (e) => {
-		let searchText = $('#searchText').val();
-		getMovies(searchText);
-		e.preventDefault();
-	});
+const searchForm = document.querySelector('#searchForm');
+
+searchForm.addEventListener('submit', function(e) {
+	let searchText = document.querySelector('#searchText').value;
+	getMovies(searchText);
+	e.preventDefault();
 });
 
 function getMovies(searchText) {
@@ -11,9 +11,17 @@ function getMovies(searchText) {
 	.get(`https://api.themoviedb.org/3/search/movie?include_adult=true&page=1&query=${searchText}&language=en-US&api_key=d85a4cb9cc02218651b1548b20f1fb7d`)
 	.then((res) => {
 		let movies = res.data.results;
-		console.log(movies);
+		if (movies.length === 0) {
+			document.getElementById('movies').innerHTML = `
+				<div class="col-md-3">
+						<h5>No Results</h5>
+				</div>
+			`;
+			return;
+		}
 		let output ='';
-		$.each(movies, (index, movie) => {
+		// $.each(movies, (index, movie) => {
+		movies.forEach((movie, index) => {
 			output += `
 				<div class="col-md-3">
 					<div class="well text-center">
@@ -25,7 +33,8 @@ function getMovies(searchText) {
 			`;
 		})
 
-		$('#movies').html(output);
+		document.getElementById('movies').innerHTML = output;
+		// $('#movies').html(output);
 	})
 	.catch((err) => {
 		console.log(err);
@@ -74,7 +83,8 @@ function getMovie() {
 					<a href="index.html" class="btn btn-default">Go Back To Search</a>
 		`;
 
-		$('#movie').html(output);
+		document.getElementById('movie').innerHTML = output;
+		//$('#movie').html(output);
 	})
 	.catch((err) => {
 		console.log(err);
